@@ -1,7 +1,12 @@
-import od
+import os
+
 
 class Config:
-    SECRET_KEY = "bikehelpsecret"
+
+    SECRET_KEY = "bike_help_secret"
+
+    JWT_SECRET_KEY = "bike_help_jwt_secret"
+
     SQLALCHEMY_DATABASE_URI = "sqlite:///database/bike_help.db"
-    SQLALCHEMY_TRACK_MODYFICATIONS = False
-    JWT_SECRET_KEY = "jwtsecret0"
+
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
