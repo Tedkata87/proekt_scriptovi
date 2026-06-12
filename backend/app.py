@@ -34,6 +34,7 @@ def create_app():
 
     # Create database
     with app.app_context():
+        from models import *
         db.create_all()
 
     # Error handlers
