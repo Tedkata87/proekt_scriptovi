@@ -1,19 +1,40 @@
-from flask import Blueprint, request, jsonify
+import bcrypt
+
+from flask import Blueprint
+from flask import request
+
+from flask_jwt_extended import (
+    create_access_token,
+    jwt_required
+)
 
 from app import db
 
 from models.user import User
 
-import bcrypt
+from utils.response import (
+    success,
+    error
+)
 
-from flask_jwt_extended import create_access_token
-
-auth_bp = Blueprint("auth_bp", __name__)
-
-@auth_bp.route("/sign-up", methods=["POST"])
+auth_bp = Blueprint(
+    "auth",
+    __name__
+)
+@auth_bp.route(
+    "/sign-up",
+    methods=["POST"]
+)
 def sign_up():
 
     data = request.get_json()
+
+    if not data:
+
+        return error(
+            "JSON body required",
+            400
+        )
 
     username = data.get("username")
 
@@ -21,54 +42,163 @@ def sign_up():
 
     password = data.get("password")
 
-    if not username or not email or not password:
-        return jsonify({"error": "Missing fields"}), 400
+    if (
+        not username
+        or not email
+        or not password
+    ):
 
-    existing_user = User.query.filter_by(email=email).first()
+        return error(
+            "Missing fields",
+            400
+        )
 
-    if existing_user:
-        return jsonify({"error": "Email already exists"}), 400
+    existing = User.query.filter_by(
+        email=email
+    ).first()
 
-    hashed_password = bcrypt.hashpw(
-        password.encode("utf-8"),
+    if existing:
+
+        return error(
+            "Email already exists",
+            400
+        )
+
+    hashed = bcrypt.hashpw(
+        password.encode(),
         bcrypt.gensalt()
     )
 
     user = User(
         username=username,
         email=email,
-        password=hashed_password.decode("utf-8")
+        password=hashed.decode()
     )
 
     db.session.add(user)
 
     db.session.commit()
 
-    return jsonify({"message": "User created"}), 201
+    return success(
+        {
+            "message":
+            "User created"
+        },
+        201
+    )
 
+@auth_bp.route(
+    "/sign-in",
+    methods=["POST"]
+)
 
-@auth_bp.route("/sign-in", methods=["POST"])
 def sign_in():
 
     data = request.get_json()
 
-    email = data.get("email")
+    if not data:
 
-    password = data.get("password")
+        return error(
+            "JSON body required",
+            400
+        )
 
-    user = User.query.filter_by(email=email).first()
-
-    if not user:
-        return jsonify({"error": "Invalid credentials"}), 401
-
-    valid_password = bcrypt.checkpw(
-        password.encode("utf-8"),
-        user.password.encode("utf-8")
+    email = data.get(
+        "email"
     )
 
-    if not valid_password:
-        return jsonify({"error": "Invalid credentials"}), 401
+    password = data.get(
+        "password"
+    )
 
-    token = create_access_token(identity=user.id)
+    if not email or not password:
 
-    return jsonify({"token": token}), 200
+        return error(
+            "Missing credentials",
+            400
+        )
+
+    user = User.query.filter_by(
+        email=email
+    ).first()
+
+    if not user:
+
+        return error(
+            "Invalid credentials",
+            401
+        )
+
+    valid = bcrypt.checkpw(
+        password.encode(),
+        user.password.encode()
+    )
+
+    if not valid:
+
+        return error(
+            "Invalid credentials",
+            401
+        )
+
+    token = create_access_token(
+        identity=user.id
+    )
+
+    return success(
+        {
+            "token": token,
+
+            "user": {
+                "id": user.id,
+
+                "username":
+                user.username,
+
+                "email":
+                user.email
+            }
+        }
+    )
+
+@auth_bp.route(
+    "/logout",
+    methods=["POST"]
+)
+@jwt_required()
+def logout():
+
+    return success(
+        {
+            "message":
+            "Logged out"
+        }
+    )
+
+@auth_bp.route(
+    "/users/me",
+    methods=["GET"]
+)
+@jwt_required()
+def me():
+
+    from flask_jwt_extended import (
+        get_jwt_identity
+    )
+
+    user_id = get_jwt_identity()
+
+    user = User.query.get(
+        user_id
+    )
+
+    if not user:
+
+        return error(
+            "User not found",
+            404
+        )
+
+    return success(
+        user.to_dict()
+    )
