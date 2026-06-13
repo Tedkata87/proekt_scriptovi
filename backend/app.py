@@ -81,3 +81,26 @@ app = create_app()
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+@app.errorhandler(403)
+def forbidden(error):
+
+    return jsonify({
+        "error": "Forbidden"
+    }), 403
+
+@app.errorhandler(500)
+def server_error(error):
+
+    return jsonify({
+        "error":
+        "Internal Server Error"
+    }), 500
+
+@app.errorhandler(Exception)
+def catch_all(error):
+
+    return jsonify({
+        "error":
+        str(error)
+    }), 500
