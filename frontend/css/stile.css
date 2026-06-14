@@ -215,3 +215,142 @@ body {
         flex-direction: column;
     }
 }
+
+/* FORMS */
+
+.form-container {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 80vh;
+}
+
+.form-card {
+
+    width: 400px;
+
+    background: #1b1b1b;
+
+    padding: 30px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.form-card h1 {
+
+    text-align: center;
+
+    color: #ff7b00;
+}
+
+.form-card input {
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 8px;
+}
+
+.form-card button {
+
+    padding: 12px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #ff7b00;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+#message {
+
+    text-align: center;
+
+    margin-top: 10px;
+}
+
+.page-container {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: flex-start;
+
+    gap: 30px;
+
+    padding: 40px;
+
+    flex-wrap: wrap;
+}
+
+.form-card {
+
+    width: 450px;
+}
+
+.form-card textarea {
+
+    min-height: 120px;
+
+    resize: vertical;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    border: none;
+}
+
+.form-card select {
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    border: none;
+}
+
+.results-card {
+
+    width: 500px;
+
+    background: #1b1b1b;
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    min-height: 300px;
+}
+
+.results-card h2 {
+
+    color: #ff7b00;
+
+    margin-bottom: 20px;
+}
+
+#recommendation {
+
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+}

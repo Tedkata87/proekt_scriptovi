@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Bike Finder</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            Bike Help
+
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+
+            <a href="bike-setup.html">Bike Setup</a>
+
+            <a href="login.html">Login</a>
+
+        </div>
+
+    </nav>
+
+    <div class="page-container">
+
+        <div class="form-card">
+
+            <h1>
+
+                Find Your MTB
+
+            </h1>
+
+            <form id="bikeFinderForm">
+
+                <input
+                    type="number"
+                    id="height"
+                    placeholder="Height (cm)"
+                    required>
+
+                <input
+                    type="number"
+                    id="weight"
+                    placeholder="Weight (kg)"
+                    required>
+
+                <select id="terrain">
+
+                    <option value="trail">
+
+                        Trail
+
+                    </option>
+
+                    <option value="enduro">
+
+                        Enduro
+
+                    </option>
+
+                    <option value="downhill">
+
+                        Downhill
+
+                    </option>
+
+                    <option value="freeride">
+
+                        Freeride
+
+                    </option>
+
+                </select>
+
+                <input
+                    type="number"
+                    id="budget"
+                    placeholder="Budget (€)"
+                    required>
+
+                <textarea
+                    id="preferences"
+                    placeholder="Additional preferences">
+                </textarea>
+
+                <button type="submit">
+
+                    Search Bike
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <div
+            id="results"
+            class="results-card">
+
+            <h2>
+
+                AI Recommendation
+
+            </h2>
+
+            <div id="recommendation">
+
+                No recommendation yet.
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/bikeFinder.js"></script>
+
+</body>
+
+</html>
