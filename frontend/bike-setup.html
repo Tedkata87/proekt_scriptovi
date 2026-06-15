@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Bike Setup</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Bike Help
+        </div>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="bike-finder.html">
+                Bike Finder
+            </a>
+
+            <a href="login.html">
+                Login
+            </a>
+
+        </div>
+
+    </nav>
+
+    <div class="page-container">
+
+        <div class="form-card">
+
+            <h1>
+
+                MTB Setup AI
+
+            </h1>
+
+            <form id="setupForm">
+
+                <input
+                    type="number"
+                    id="rider_height"
+                    placeholder="Height (cm)"
+                    required>
+
+                <input
+                    type="number"
+                    id="rider_weight"
+                    placeholder="Weight (kg)"
+                    required>
+
+                <select id="terrain">
+
+                    <option value="trail">
+                        Trail
+                    </option>
+
+                    <option value="enduro">
+                        Enduro
+                    </option>
+
+                    <option value="downhill">
+                        Downhill
+                    </option>
+
+                    <option value="freeride">
+                        Freeride
+                    </option>
+
+                </select>
+
+                <select id="bike_type">
+
+                    <option value="trail bike">
+                        Trail Bike
+                    </option>
+
+                    <option value="enduro bike">
+                        Enduro Bike
+                    </option>
+
+                    <option value="downhill bike">
+                        Downhill Bike
+                    </option>
+
+                    <option value="e-bike">
+                        E-Bike
+                    </option>
+
+                </select>
+
+                <input
+                    type="text"
+                    id="brand"
+                    placeholder="Brand"
+                    required>
+
+                <input
+                    type="text"
+                    id="model"
+                    placeholder="Model"
+                    required>
+
+                <input
+                    type="text"
+                    id="fork"
+                    placeholder="Fork">
+
+                <input
+                    type="text"
+                    id="shock"
+                    placeholder="Shock">
+
+                <input
+                    type="text"
+                    id="frame_size"
+                    placeholder="Frame Size">
+
+                <input
+                    type="text"
+                    id="wheel_size"
+                    placeholder="Wheel Size">
+
+                <input
+                    type="text"
+                    id="drivetrain"
+                    placeholder="Drivetrain">
+
+                <input
+                    type="text"
+                    id="brakes"
+                    placeholder="Brakes">
+
+                <input
+                    type="text"
+                    id="handlebars"
+                    placeholder="Handlebars">
+
+                <button type="submit">
+
+                    Generate Setup
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="results-card">
+
+            <h2>
+
+                Recommended Setup
+
+            </h2>
+
+            <div id="setupResult">
+
+                No setup generated yet.
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="js/bikeSetup.js"></script>
+
+</body>
+
+</html>
