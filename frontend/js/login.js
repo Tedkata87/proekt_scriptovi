@@ -58,7 +58,7 @@ loginForm.addEventListener(
             setTimeout(() => {
 
                 window.location.href =
-                    "bike-finder.html";
+                    "dashboard.html";
 
             }, 1000);
 
