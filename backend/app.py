@@ -7,13 +7,6 @@ from config import Config
 
 from extensions import db, jwt
 
-with app.app_context():
-    from models.user import User
-    from models.bike_search import BikeSearch
-    from models.bike_setup import BikeSetup
-    from models.bike import Bike
-
-    db.create_all()
 def create_app():
 
     app = Flask(__name__)

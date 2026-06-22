@@ -391,6 +391,3 @@ def delete_setup(setup_id):
     db.session.commit()
 
     return "", 204
-
-setup_result = db.Column(db.Text)
-setup.setup_result = str(result)
