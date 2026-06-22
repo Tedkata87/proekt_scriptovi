@@ -5,8 +5,7 @@ from flask_cors import CORS
 
 from config import Config
 
-db = SQLAlchemy()
-jwt = JWTManager()
+from extensions import db, jwt
 
 
 def create_app():
@@ -33,8 +32,11 @@ def create_app():
     app.register_blueprint(bike_setup_bp)
 
     # Create database
+    # Create database
     with app.app_context():
-        from models import *
+        from models.user import User
+        from models.bike_search import BikeSearch
+        from models.bike_setup import BikeSetup
         db.create_all()
 
     # Error handlers
@@ -74,6 +76,10 @@ def create_app():
             "error": "Server Error"
         }), 500
 
+    @app.route("/")
+    def home():
+        return {"message": "Bike Help API works"}
+
     return app
 
 
@@ -81,26 +87,3 @@ app = create_app()
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-@app.errorhandler(403)
-def forbidden(error):
-
-    return jsonify({
-        "error": "Forbidden"
-    }), 403
-
-@app.errorhandler(500)
-def server_error(error):
-
-    return jsonify({
-        "error":
-        "Internal Server Error"
-    }), 500
-
-@app.errorhandler(Exception)
-def catch_all(error):
-
-    return jsonify({
-        "error":
-        str(error)
-    }), 500

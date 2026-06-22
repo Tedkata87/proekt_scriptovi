@@ -8,7 +8,7 @@ from flask_jwt_extended import (
     jwt_required
 )
 
-from app import db
+from extensions import db
 
 from models.user import User
 
