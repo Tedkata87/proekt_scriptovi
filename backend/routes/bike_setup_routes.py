@@ -111,84 +111,97 @@ def create_setup():
                 400
             )
 
-    ai_result = generate_setup(
-        data
-    )
+    try:
 
-    setup = BikeSetup(
-        user_id=user_id,
+        # Генериран setup препорака
+        setup_recommendation = generate_setup(data)
 
-        rider_height=data[
-            "rider_height"
-        ],
+        setup = BikeSetup(
+            user_id=user_id,
 
-        rider_weight=data[
-            "rider_weight"
-        ],
+            rider_height=data[
+                "rider_height"
+            ],
 
-        terrain=data[
-            "terrain"
-        ],
+            rider_weight=data[
+                "rider_weight"
+            ],
 
-        bike_type=data[
-            "bike_type"
-        ],
+            terrain=data[
+                "terrain"
+            ],
 
-        brand=data[
-            "brand"
-        ],
+            bike_type=data[
+                "bike_type"
+            ],
 
-        model=data[
-            "model"
-        ],
+            brand=data[
+                "brand"
+            ],
 
-        fork=data.get(
-            "fork"
-        ),
+            model=data[
+                "model"
+            ],
 
-        shock=data.get(
-            "shock"
-        ),
+            fork=data.get(
+                "fork"
+            ),
 
-        frame_size=data.get(
-            "frame_size"
-        ),
+            shock=data.get(
+                "shock"
+            ),
 
-        wheel_size=data.get(
-            "wheel_size"
-        ),
+            frame_size=data.get(
+                "frame_size"
+            ),
 
-        drivetrain=data.get(
-            "drivetrain"
-        ),
+            wheel_size=data.get(
+                "wheel_size"
+            ),
 
-        brakes=data.get(
-            "brakes"
-        ),
+            drivetrain=data.get(
+                "drivetrain"
+            ),
 
-        handlebars=data.get(
-            "handlebars"
-        ),
+            brakes=data.get(
+                "brakes"
+            ),
 
-        ai_result=str(
-            ai_result
+            handlebars=data.get(
+                "handlebars"
+            ),
+
+            ai_result=str(setup_recommendation)
         )
-    )
 
-    db.session.add(setup)
+        db.session.add(setup)
 
-    db.session.commit()
+        db.session.commit()
 
-    return success(
-        {
-            "setup":
-                setup.to_dict(),
+        return success(
+            {
+                "id": setup.id,
+                "brand": setup.brand,
+                "model": setup.model,
+                "rider_height": setup.rider_height,
+                "rider_weight": setup.rider_weight,
+                "terrain": setup.terrain,
+                "bike_type": setup.bike_type,
+                "created_at": str(setup.created_at),
+                "suspension_setup": setup_recommendation.get("suspension_setup", {}),
+                "tire_pressure": setup_recommendation.get("tire_pressure", {})
+            },
+            201
+        )
 
-            "recommendation":
-                ai_result
-        },
-        201
-    )
+    except Exception as e:
+
+        db.session.rollback()
+
+        return error(
+            f"Error creating setup: {str(e)}",
+            500
+        )
 
 
 # PUT
@@ -378,3 +391,6 @@ def delete_setup(setup_id):
     db.session.commit()
 
     return "", 204
+
+setup_result = db.Column(db.Text)
+setup.setup_result = str(result)

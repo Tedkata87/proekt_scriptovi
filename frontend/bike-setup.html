@@ -47,24 +47,31 @@
 
             <h1>
 
-                MTB Setup AI
+                MTB Setup Configuration
 
             </h1>
 
             <form id="setupForm">
 
+                <label>Rider Height (cm)</label>
                 <input
                     type="number"
                     id="rider_height"
-                    placeholder="Height (cm)"
-                    required>
+                    placeholder="Enter your height"
+                    required><p>
 
+                    </p>
+
+                <label>Rider Weight (kg)</label>
                 <input
                     type="number"
                     id="rider_weight"
-                    placeholder="Weight (kg)"
-                    required>
+                    placeholder="Enter your weight"
+                    required><p>
 
+                    </p>
+
+                <label>Terrain</label>
                 <select id="terrain">
 
                     <option value="trail">
@@ -83,8 +90,11 @@
                         Freeride
                     </option>
 
-                </select>
+                </select><p>
 
+                </p>
+
+                <label>Bike Type</label>
                 <select id="bike_type">
 
                     <option value="trail bike">
@@ -104,57 +114,87 @@
                     </option>
 
                 </select>
+                <p>
 
+                </p>
+
+                <label>Brand</label>
                 <input
                     type="text"
                     id="brand"
-                    placeholder="Brand"
-                    required>
+                    placeholder="Enter bike brand"
+                    required><p>
 
+                    </p>
+
+                <label>Model</label>
                 <input
                     type="text"
                     id="model"
-                    placeholder="Model"
-                    required>
+                    placeholder="Enter bike model"
+                    required><p>
 
+                    </p>
+
+                <label>Fork (optional)</label>
                 <input
                     type="text"
                     id="fork"
-                    placeholder="Fork">
+                    placeholder="Enter fork model"><p>
 
+                    </p>
+
+                <label>Shock (optional)</label>
                 <input
                     type="text"
                     id="shock"
-                    placeholder="Shock">
+                    placeholder="Enter shock model"><p>
 
+                    </p>
+
+                <label>Frame Size (optional)</label>
                 <input
                     type="text"
                     id="frame_size"
-                    placeholder="Frame Size">
+                    placeholder="Enter frame size"><p>
+                       
+                    </p>
 
+                <label>Wheel Size (optional)</label>
                 <input
                     type="text"
                     id="wheel_size"
-                    placeholder="Wheel Size">
+                    placeholder="Enter wheel size"><p>
 
+                    </p>
+
+                <label>Drivetrain (optional)</label>
                 <input
                     type="text"
                     id="drivetrain"
-                    placeholder="Drivetrain">
+                    placeholder="Enter drivetrain"><p>
 
+                    </p>
+
+                <label>Brakes (optional)</label>
                 <input
                     type="text"
                     id="brakes"
-                    placeholder="Brakes">
+                    placeholder="Enter brake type"><p>
 
+                    </p>
+
+                <label>Handlebars (optional)</label>
                 <input
                     type="text"
                     id="handlebars"
-                    placeholder="Handlebars">
+                    placeholder="Enter handlebar type"><p>
+                        
+                    </p>
 
                 <button type="submit">
 
-                    Generate Setup
+                    Save Setup
 
                 </button>
 
@@ -166,13 +206,13 @@
 
             <h2>
 
-                Recommended Setup
+                Setup Summary
 
             </h2>
 
             <div id="setupResult">
 
-                No setup generated yet.
+                Submit the form to see your setup configuration.
 
             </div>
 

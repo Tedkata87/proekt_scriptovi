@@ -49,18 +49,25 @@
 
             <form id="bikeFinderForm">
 
+                <label>Height (cm)</label>
                 <input
                     type="number"
                     id="height"
-                    placeholder="Height (cm)"
-                    required>
+                    placeholder="Enter your height"
+                    required><p>
 
+                    </p>
+
+                <label>Weight (kg)</label>
                 <input
                     type="number"
                     id="weight"
-                    placeholder="Weight (kg)"
-                    required>
+                    placeholder="Enter your weight"
+                    required><p>
 
+                    </p>
+
+                <label>Terrain</label>
                 <select id="terrain">
 
                     <option value="trail">
@@ -88,16 +95,23 @@
                     </option>
 
                 </select>
+                <p>
+                    
+                </p>
 
+                <label>Budget (€)</label>
                 <input
                     type="number"
                     id="budget"
-                    placeholder="Budget (€)"
-                    required>
+                    placeholder="Enter your budget"
+                    required><p>
+                        
+                    </p>
 
+                <label>Additional preferences</label>
                 <textarea
                     id="preferences"
-                    placeholder="Additional preferences">
+                    placeholder="Tell us more about your preferences">
                 </textarea>
 
                 <button type="submit">
@@ -116,13 +130,13 @@
 
             <h2>
 
-                AI Recommendation
+                Search Results
 
             </h2>
 
             <div id="recommendation">
 
-                No recommendation yet.
+                Submit the form to see your bike search results.
 
             </div>
 

@@ -231,7 +231,7 @@ body {
 
 .form-card {
 
-    width: 400px;
+    width: 450px;
 
     background: #1b1b1b;
 
@@ -243,7 +243,7 @@ body {
 
     flex-direction: column;
 
-    gap: 15px;
+    gap: 20px;
 }
 
 .form-card h1 {
@@ -251,6 +251,19 @@ body {
     text-align: center;
 
     color: #ff7b00;
+
+    margin-bottom: 10px;
+}
+
+.form-card label {
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+    margin-top: 8px;
+
+    color: #ddd;
 }
 
 .form-card input {
@@ -260,11 +273,45 @@ body {
     border: none;
 
     border-radius: 8px;
+
+    margin-top: 5px;
+}
+
+.form-card select {
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    border: none;
+
+    margin-top: 5px;
+
+    background: white;
+
+    color: #333;
+}
+
+.form-card textarea {
+
+    min-height: 100px;
+
+    resize: vertical;
+
+    padding: 12px;
+
+    border-radius: 8px;
+
+    border: none;
+
+    margin-top: 5px;
+
+    font-family: Arial, sans-serif;
 }
 
 .form-card button {
 
-    padding: 12px;
+    padding: 14px;
 
     border: none;
 
@@ -277,6 +324,17 @@ body {
     cursor: pointer;
 
     font-size: 16px;
+
+    font-weight: bold;
+
+    margin-top: 10px;
+
+    transition: 0.3s;
+}
+
+.form-card button:hover {
+
+    background: #e86a00;
 }
 
 #message {
@@ -294,51 +352,24 @@ body {
 
     align-items: flex-start;
 
-    gap: 30px;
+    gap: 40px;
 
     padding: 40px;
 
     flex-wrap: wrap;
 }
 
-.form-card {
-
-    width: 450px;
-}
-
-.form-card textarea {
-
-    min-height: 120px;
-
-    resize: vertical;
-
-    padding: 12px;
-
-    border-radius: 8px;
-
-    border: none;
-}
-
-.form-card select {
-
-    padding: 12px;
-
-    border-radius: 8px;
-
-    border: none;
-}
-
 .results-card {
 
-    width: 500px;
+    width: 450px;
 
     background: #1b1b1b;
 
-    padding: 25px;
+    padding: 30px;
 
     border-radius: 12px;
 
-    min-height: 300px;
+    min-height: 400px;
 }
 
 .results-card h2 {
@@ -348,7 +379,8 @@ body {
     margin-bottom: 20px;
 }
 
-#recommendation {
+#recommendation,
+#setupResult {
 
     line-height: 1.7;
 
@@ -364,6 +396,44 @@ pre {
     font-size: 14px;
 
     line-height: 1.6;
+}
+
+.result-item {
+
+    background: #222;
+
+    padding: 20px;
+
+    border-radius: 8px;
+
+    border-left: 4px solid #ff7b00;
+}
+
+.result-item h3 {
+
+    color: #ff7b00;
+
+    margin-bottom: 15px;
+}
+
+.result-item p {
+
+    margin-bottom: 10px;
+
+    line-height: 1.8;
+}
+
+.error {
+
+    color: #ff6b6b;
+
+    padding: 15px;
+
+    background: #3a1a1a;
+
+    border-radius: 8px;
+
+    border-left: 4px solid #ff6b6b;
 }
 
 /* DASHBOARD */
@@ -448,4 +518,17 @@ pre {
     margin-top: 50px;
 
     border-top: 1px solid #333;
+}
+
+#message {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 8px;
+    min-height: 20px;
+}
+
+#message:empty {
+    display: none;
 }

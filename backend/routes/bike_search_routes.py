@@ -6,7 +6,7 @@ from flask_jwt_extended import (
     get_jwt_identity
 )
 
-from app import db
+from extensions import db
 
 from models.bike_search import BikeSearch
 
@@ -109,36 +109,51 @@ def create_search():
                 400
             )
 
-    search = BikeSearch(
-        user_id=user_id,
-        height=data["height"],
-        weight=data["weight"],
-        terrain=data["terrain"],
-        budget=data["budget"],
-        preferences=data.get(
-            "preferences",
-            ""
+    try:
+
+        search = BikeSearch(
+            user_id=user_id,
+            height=data["height"],
+            weight=data["weight"],
+            terrain=data["terrain"],
+            budget=data["budget"],
+            preferences=data.get(
+                "preferences",
+                ""
+            )
         )
-    )
 
-    db.session.add(search)
+        db.session.add(search)
 
-    db.session.commit()
+        db.session.commit()
 
-    ai_result = generate_bike_recommendation(
-        data
-    )
+        # Генериран препорака
+        recommendation = generate_bike_recommendation(data)
 
-    return success(
-        {
-            "search":
-                search.to_dict(),
+        return success(
+            {
+                "id": search.id,
+                "height": search.height,
+                "weight": search.weight,
+                "terrain": search.terrain,
+                "budget": search.budget,
+                "preferences": search.preferences,
+                "created_at": str(search.created_at),
+                "bikes": recommendation.get("bikes", []),
+                "sizing_advice": recommendation.get("sizing_advice", {}),
+                "custom_notes": recommendation.get("custom_notes", "")
+            },
+            201
+        )
 
-            "recommendation":
-                ai_result
-        },
-        201
-    )
+    except Exception as e:
+
+        db.session.rollback()
+
+        return error(
+            f"Error creating search: {str(e)}",
+            500
+        )
 
 
 # FULL UPDATE
